@@ -35,6 +35,7 @@ body, h2, ul, li, form, input, button {
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden;    /* Hide any overflow */
     text-overflow: ellipsis; /* Add ellipsis (...) if the text is too long */
+    text-align: center; /* Center align the text */
 }
 
 .contact-left-title hr {
@@ -108,17 +109,16 @@ button img {
 }
 
 
-@media (min-width: 600px) {
-    .contact-container {
-        flex-direction: row;
-        justify-content: space-between;
+/* Responsive font size for small screens */
+@media (max-width: 600px) {
+    .contact-left-title h2 {
+        font-size: 20px; /* Adjust size for smaller screens */
     }
+}
 
-    .contact-left, .contact-right {
-        max-width: 48%;
-    }
-
-    .contact-right img {
-        max-width: 100%;
+/* Responsive font size for very small screens */
+@media (max-width: 400px) {
+    .contact-left-title h2 {
+        font-size: 16px; /* Further adjust size for very small screens */
     }
 }
