@@ -30,12 +30,8 @@ body, h2, ul, li, form, input, button {
 
 .contact-left-title h2 {
     font-size: 24px;
-    color: #2c2c2c;
+    color: #333;
     margin-bottom: 10px;
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden;    /* Hide any overflow */
-    text-overflow: ellipsis; /* Add ellipsis (...) if the text is too long */
-    text-align: center; /* Center align the text */
 }
 
 .contact-left-title hr {
