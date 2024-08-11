@@ -1,0 +1,22 @@
+{
+    "name": "Sistem JPK",
+    "short_name": "Sistem JPK",
+    "description": "A web application for JPK program announcements.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0c1334",
+    "theme_color": "#0056b3",
+    "icons": [
+      {
+        "src": "assets/icon_jpk.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "assets/icon_jpk.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

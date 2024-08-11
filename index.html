@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" type="x-icon" href="assets/icon_jpk.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem JPK</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the external CSS file -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("s7tCxutsiuJh8mTrP");  // Initialize EmailJS with your public key
+        })();
+    </script>
+    <!-- Make the web page act like an app when added to the home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body>
+    <div class="contact-container">
+        <form class="contact-left" onsubmit="SendMail(event)">
+            <div class="contact-left-title">
+                <h2>Sistem Hebahan Program JPKNR</h2>
+                <hr>
+            </div>
+            
+            <label for="name">Nama Program</label>
+            <input type="text" id="name" placeholder="Nama Program" class="contact-inputs" required>
+
+            <label for="date">Tarikh</label>
+            <input type="date" id="date" placeholder="Tarikh" class="contact-inputs" required>
+
+            <label for="place">Tempat</label>
+            <input type="text" id="place" placeholder="Tempat" class="contact-inputs" required>
+
+            <label for="time">Masa</label>
+            <input type="time" id="time" placeholder="Masa" class="contact-inputs" required>
+
+            <label for="recipient-email">Email (gunakan koma untuk email berganda)</label>
+            <input type="text" id="recipient-email" placeholder="Recipient Emails (comma-separated)" class="contact-inputs" required>
+
+            <button type="submit">Submit <img src="assets/arrow_icon.png" alt=""></button>
+        </form>
+        
+        <div class="contact-right">
+            <img src="assets/Logo png.png" alt="Logo">
+            <nav class="menu">
+                <ul>
+                    <li><a href="sijil.html">PENSIJILAN PROGRAM</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function SendMail(event) {
+            event.preventDefault();  // Prevent default form submission
+
+            var dateInput = document.getElementById("date").value;
+            var formattedDate = dateInput.split("-").reverse().join("/");
+
+            var recipientEmails = document.getElementById("recipient-email").value.split(/[,;]+/);  // Split emails by comma or semicolon
+
+            recipientEmails.forEach(function(email) {
+                var params = {
+                    nama_program: document.getElementById("name").value,
+                    tarikh: formattedDate,  // Use the formatted date
+                    tempat: document.getElementById("place").value,
+                    masa: document.getElementById("time").value,
+                    recipient_email: email.trim()  // Trim any extra spaces
+                };
+
+                emailjs.send("service_pxt70sr", "template_6gtteag", params)
+                    .then(function(response) {
+                        console.log("Success! Email sent to " + email + " with status: " + response.status);
+                    })
+                    .catch(function(error) {
+                        console.error("Failed to send email to " + email + ". Error: ", error);
+                    });
+            });
+
+            alert("Emails have been sent.");
+        }
+
+        if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+            }, function(error) {
+                console.log('Service Worker registration failed:', error);
+            });
+        });
+    }
+    </script>
+</body>
+</html>
